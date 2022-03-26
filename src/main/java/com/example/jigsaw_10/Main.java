@@ -1,32 +1,17 @@
 package com.example.jigsaw_10;
 
+import java.util.Arrays;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Timer;
-import java.util.TimerTask;
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class Main extends Application {
 
@@ -70,6 +55,7 @@ public class Main extends Application {
     windows.setScene(scene);
     windows.show();
   }
+
   private void moveOnKeyPress(Form form) {
 //    scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 //      @Override
@@ -92,23 +78,20 @@ public class Main extends Application {
 //      }
 //    });
   }
+
   private void doTime() {
     Timeline time = new Timeline();
-    KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        controller.setViewLabelFxText("Time - " + seconds/3600 + ":" + seconds/60 + ":" + seconds);
-        ++seconds;
-        if (seconds <= 0) {
-          time.stop();
-        }
+    KeyFrame frame = new KeyFrame(Duration.seconds(1), event -> {
+      controller.setViewLabelFxText(
+          "Time - " + seconds / 3600 + ":" + seconds / 60 + ":" + seconds);
+      ++seconds;
+      if (seconds <= 0) {
+        time.stop();
       }
     });
     time.setCycleCount(Timeline.INDEFINITE);
     time.getKeyFrames().add(frame);
-    if (time != null) {
-      time.stop();
-    }
+    time.stop();
     time.play();
   }
 }

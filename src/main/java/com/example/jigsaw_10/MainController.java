@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 public class MainController extends View implements Initializable {
 
@@ -15,16 +16,12 @@ public class MainController extends View implements Initializable {
   public static int XMAX = Main.XMAX;
   public static int YMAX = Main.YMAX;
   public static int[][] MESH = Main.MESH;
+  public Pane root;
 
   @FXML
   private Label label;
   @FXML
   public static Label localLabel;
-
-  @FXML
-  private void click(ActionEvent event) {
-    ((Button) (event.getSource())).setText("You've clicked!");
-  }
 
   public void setViewLabelFxText(String text) {
     label.setText(text);
