@@ -22,14 +22,24 @@ public class MainController extends View implements Initializable {
   private Label label;
   @FXML
   public static Label localLabel;
+  @FXML
+  private Label steps;
+  @FXML
+  public static Label localSteps;
 
   public void setViewLabelFxText(String text) {
     label.setText(text);
+  }
+
+  public void setViewStepsFxText(String text) {
+    steps.setText(text);
   }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     localLabel = label;
     setLabel(label);
+    localSteps = steps;
+    setSteps(steps);
   }
 }

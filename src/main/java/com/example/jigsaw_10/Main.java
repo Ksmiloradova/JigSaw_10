@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -28,15 +29,14 @@ public class Main extends Application {
   public static int XMAX = SIZE * 9;
   public static int YMAX = SIZE * 9;
   public static int[][] MESH = new int[XMAX / SIZE][YMAX / SIZE];
-  private static Pane group = new Pane();
-  private static Form object;
-  private static Form nextObj = Controller.makeRect();
-  private static Scene scene = new Scene(group, XMAX + 150, YMAX);
+  public static Pane root;
+  public static Form object;
+  public static Form nextObj = Controller.makeRect();
 
   @Override
   public void start(Stage primaryStage) throws Exception {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
-    Pane root = loader.load();
+    root = loader.load();
     controller = loader.getController();
     windows = primaryStage;
     for (int[] a : MESH) {

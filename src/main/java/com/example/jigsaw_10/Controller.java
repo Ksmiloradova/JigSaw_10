@@ -1,50 +1,29 @@
 package com.example.jigsaw_10;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
-public class Controller {
+public class Controller{
 
-  // Getting the numbers and the MESH from Main
+
   public static final int MOVE = Main.SIZE;
   public static final int SIZE = Main.SIZE;
   public static int XMAX = Main.XMAX;
   public static int YMAX = Main.YMAX;
   public static int[][] MESH = Main.MESH;
+  public static Form nextObject = Main.nextObj;
+  public static Form object = Main.object;
+  private static Pane root = Main.root;
+  private static int stepNumber = 0;
 
-//  public static void MoveRight(Form form) {
-//    if (form.a.getX() + MOVE <= XMAX - SIZE && form.b.getX() + MOVE <= XMAX - SIZE
-//        && form.c.getX() + MOVE <= XMAX - SIZE && form.d.getX() + MOVE <= XMAX - SIZE) {
-//      int movea = MESH[((int) form.a.getX() / SIZE) + 1][((int) form.a.getY() / SIZE)];
-//      int moveb = MESH[((int) form.b.getX() / SIZE) + 1][((int) form.b.getY() / SIZE)];
-//      int movec = MESH[((int) form.c.getX() / SIZE) + 1][((int) form.c.getY() / SIZE)];
-//      int moved = MESH[((int) form.d.getX() / SIZE) + 1][((int) form.d.getY() / SIZE)];
-//      if (movea == 0 && movea == moveb && moveb == movec && movec == moved) {
-//        form.a.setX(form.a.getX() + MOVE);
-//        form.b.setX(form.b.getX() + MOVE);
-//        form.c.setX(form.c.getX() + MOVE);
-//        form.d.setX(form.d.getX() + MOVE);
-//      }
-//    }
-//  }
-//
-//  public static void MoveLeft(Form form) {
-//    if (form.a.getX() - MOVE >= 0 && form.b.getX() - MOVE >= 0 && form.c.getX() - MOVE >= 0
-//        && form.d.getX() - MOVE >= 0) {
-//      int movea = MESH[((int) form.a.getX() / SIZE) - 1][((int) form.a.getY() / SIZE)];
-//      int moveb = MESH[((int) form.b.getX() / SIZE) - 1][((int) form.b.getY() / SIZE)];
-//      int movec = MESH[((int) form.c.getX() / SIZE) - 1][((int) form.c.getY() / SIZE)];
-//      int moved = MESH[((int) form.d.getX() / SIZE) - 1][((int) form.d.getY() / SIZE)];
-//      if (movea == 0 && movea == moveb && moveb == movec && movec == moved) {
-//        form.a.setX(form.a.getX() - MOVE);
-//        form.b.setX(form.b.getX() - MOVE);
-//        form.c.setX(form.c.getX() - MOVE);
-//        form.d.setX(form.d.getX() - MOVE);
-//      }
-//    }
-//  }
 
   public static Form makeRect() {
-    int block = (int) (Math.random() * 150);
+    int block = (int) (Math.random() * 155);
     int orientation = (int) (Math.random() * 4);
     String name;
     Rectangle a = new Rectangle(SIZE - 2, SIZE - 2), b = new Rectangle(SIZE - 2,
@@ -54,10 +33,24 @@ public class Controller {
     Rectangle[] figure = {a, b, c, d, e};
     double[] xCord = {ax, bx, cx, dx, ex};
     double[] yCord = {ay, by, cy, dy, ey};
-    double[] startX = new double[5];
-    double[] startY = new double[5];
+    double[] startX = new double[6];
+    double[] startY = new double[6];
 
-    if (block < 15) {
+    name = generateFigure(block, a, b, c, d, e);
+    setHandles(a, figure, xCord, yCord, startX, startY);
+    setHandles(b, figure, xCord, yCord, startX, startY);
+    setHandles(c, figure, xCord, yCord, startX, startY);
+    setHandles(d, figure, xCord, yCord, startX, startY);
+    setHandles(e, figure, xCord, yCord, startX, startY);
+    return new Form(a, b, c, d, e, orientation, name);
+  }
+
+  private static String generateFigure(int block, Rectangle a, Rectangle b, Rectangle c,
+      Rectangle d,
+      Rectangle e) {
+    root = Main.root;
+    String name;
+    if (block < 20) {
       a.setX(500);
       a.setY(0);
       b.setX(500);
@@ -68,7 +61,7 @@ public class Controller {
       d.setY(100);
       setSame(a, e);
       name = "j";
-    } else if (block < 30) {
+    } else if (block < 40) {
       a.setX(500);
       a.setY(0);
       b.setX(500);
@@ -86,14 +79,14 @@ public class Controller {
       setSame(a, e);
       name = "l";
     } else if (block < 45) {
-      a.setX(550);
+      a.setX(500);
       a.setY(50);
       setSame(a, b);
       setSame(a, c);
       setSame(a, d);
       setSame(a, e);
       name = "o";
-    } else if (block < 60) {
+    } else if (block < 55) {
       a.setX(500);
       a.setY(50);
       b.setX(550);
@@ -115,7 +108,7 @@ public class Controller {
       d.setY(100);
       setSame(a, e);
       name = "t";
-    } else if (block < 90) {
+    } else if (block < 85) {
       a.setX(450);
       a.setY(50);
       b.setX(500);
@@ -126,7 +119,7 @@ public class Controller {
       d.setY(100);
       setSame(a, e);
       name = "z";
-    } else if (block < 105) {
+    } else if (block < 95) {
       a.setX(500);
       a.setY(0);
       b.setX(500);
@@ -136,7 +129,7 @@ public class Controller {
       setSame(a, e);
       setSame(a, d);
       name = "i";
-    } else if (block < 120) {
+    } else if (block < 115) {
       a.setX(450);
       a.setY(0);
       b.setX(500);
@@ -171,12 +164,19 @@ public class Controller {
       e.setY(100);
       name = "T";
     }
+    return name;
+  }
+
+  private static void setHandles(Rectangle b, Rectangle[] figure, double[] xCord, double[] yCord,
+      double[] startX, double[] startY) {
     b.setOnMousePressed(event -> {
+      startX[5] = b.getX();
+      startY[5] = b.getY();
       for (int i = 0; i < figure.length; ++i) {
         xCord[i] = figure[i].getTranslateX() - event.getSceneX();
         yCord[i] = figure[i].getTranslateY() - event.getSceneY();
-        startX[i] = figure[i].getTranslateX();
-        startY[i] = figure[i].getTranslateY();
+        startX[i] = figure[i].getX();
+        startY[i] = figure[i].getY();
       }
     });
     b.setOnMouseDragged(event -> {
@@ -189,39 +189,46 @@ public class Controller {
       boolean isCorrect =
           !(event.getSceneX() < 0) && !(event.getSceneY() < 0) && !(event.getSceneX() > 450)
               && !(event.getSceneY() > 450);
-      for (Rectangle rectangle : figure) {
-        if (rectangle.getX() < 450 || rectangle.getY() < 0 || rectangle.getX() > 550
-            || rectangle.getY() > 100) {
+      for (int i = 0; i < figure.length; ++i) {
+        if (getMeshFirst(event.getSceneY() + startY[i] - startY[5]) < 0
+            || getMeshSecond(event.getSceneX() + startX[i] - startX[5]) < 0 ||
+            MESH[getMeshFirst(event.getSceneY() + startY[i] - startY[5])][getMeshSecond(
+                event.getSceneX() + startX[i] - startX[5])] == 1) {
           isCorrect = false;
           break;
         }
       }
       if (isCorrect) {
         for (int i = 0; i < figure.length; ++i) {
-          figure[i].setTranslateX(xCord[i] + event.getSceneX());
-          figure[i].setTranslateY(yCord[i] + event.getSceneY());
+          MESH[getMeshFirst(event.getSceneY() + startY[i] - startY[5])][getMeshSecond(
+              event.getSceneX() + startX[i] - startX[5])] = 1;
+          figure[i].setTranslateX(50 * getMeshSecond(event.getSceneX()) - startX[5]);
+          figure[i].setTranslateY(50 * getMeshFirst(event.getSceneY()) - startY[5]);
+          figure[i].setOnMousePressed(null);
+          figure[i].setOnMouseDragged(null);
+          figure[i].setOnMouseReleased(null);
         }
+        MainController.localSteps.setText("Steps - " + (++stepNumber));
+        Form form = makeRect();
+        root.getChildren().addAll(form.a, form.b, form.c, form.d, form.e);
+        object = form;
       } else {
         for (int i = 0; i < figure.length; ++i) {
-          figure[i].setTranslateX(startX[i]);
-          figure[i].setTranslateY(startY[i]);
+          figure[i].setTranslateX(0);
+          figure[i].setTranslateY(0);
         }
       }
     });
-    System.out.println(name);
-    System.out.println(orientation);
-    System.out.println();
-    return new Form(a, b, c, d, e, orientation, name);
   }
 
-  private int getMeshFirst(double y) {
+  private static int getMeshFirst(double y) {
     if (y < 0 || y > 450) {
       return -1;
     }
     return (int) (y / 50);
   }
 
-  private int getMeshSecond(double x) {
+  private static int getMeshSecond(double x) {
     if (x < 0 || x > 450) {
       return -1;
     }

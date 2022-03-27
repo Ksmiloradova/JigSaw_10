@@ -33,7 +33,7 @@
       <Font size="14.0"/>
     </font>
   </Label>
-  <Label layoutX="478.0" layoutY="225.0" prefHeight="33.0" prefWidth="108.0" text="Steps - 0">
+  <Label fx:id="steps" layoutX="478.0" layoutY="225.0" prefHeight="33.0" prefWidth="108.0" text="Steps - 0">
     <font>
       <Font size="14.0"/>
     </font>
