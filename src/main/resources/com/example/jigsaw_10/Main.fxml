@@ -14,7 +14,7 @@
   <Line endX="300" endY="450" startX="300" strokeWidth="2.0" />
   <Line endX="450" endY="150" startY="150" strokeWidth="2.0" />
   <Line endX="450" endY="300" startY="300" strokeWidth="2.0" />
-  <Label fx:id="label" layoutX="478.0" layoutY="184.0" prefHeight="33.0" prefWidth="108.0" text="Time - 00:00:00">
+  <Label fx:id="label" layoutX="478.0" layoutY="184.0" prefHeight="33.0" prefWidth="108.0" text="Time - 0:0:0">
     <font>
       <Font size="14.0" />
     </font>

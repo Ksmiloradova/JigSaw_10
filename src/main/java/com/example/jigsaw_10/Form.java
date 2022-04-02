@@ -20,7 +20,7 @@ public class Form {
     this.c = c;
     this.d = d;
     this.e = e;
-    this.form = form*2+1;
+    this.form = form * 2 + 1;
   }
 
   public Form(Rectangle a, Rectangle b, Rectangle c, Rectangle d, Rectangle e, int form,
@@ -37,7 +37,7 @@ public class Form {
     this.c.setFill(color);
     this.d.setFill(color);
     this.e.setFill(color);
-    this.form = form*2+1;
+    this.form = form * 2 + 1;
     while (--(this.form) > 0) {
       orient();
     }

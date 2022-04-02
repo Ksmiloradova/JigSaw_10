@@ -3,15 +3,11 @@ package com.example.jigsaw_10;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -22,7 +18,7 @@ import javafx.stage.StageStyle;
 public class MainController extends View implements Initializable {
 
   @FXML
-  private static Pane root = Main.root;
+  private static Pane root;
   @FXML
   private Label label;
   @FXML
@@ -31,8 +27,7 @@ public class MainController extends View implements Initializable {
   private Label steps;
   @FXML
   public static Label localSteps;
-  @FXML
-  private Button btn;
+
   @FXML
   private void openDialog() throws IOException {
 
@@ -45,27 +40,18 @@ public class MainController extends View implements Initializable {
     stage.setScene(scene);
 
     stage.show();
-//    FXMLLoader loader = new FXMLLoader(getClass().getResource(".fxml"));
-//    DialogController controller = new DialogController();
-////    controller.setLabels(stepNumber, Main.seconds);
-//    loader.setController(controller);
-//    final Parent root1 = FXMLLoader.load(getClass().getResource("DialogWindow.fxml"));
-//    final Scene scene1 = new Scene(root1);
-//    stage.initModality(Modality.APPLICATION_MODAL);
-//    stage.initStyle(StageStyle.UNDECORATED);
-//    stage.initOwner(btn.getScene().getWindow());
-//    stage.setScene(scene1);
-//    stage.show();
   }
 
-
-  public static final int SIZE = Main.SIZE;
-  public static int XMAX = Main.XMAX;
-  public static int YMAX = Main.YMAX;
+  private static final int SIZE = 50;
   public static int[][] MESH = Main.MESH;
-  public static Form object = Main.object;
-  public static int stepNumber = 0;
+  public static Form object;
+  public static int stepNumber;
 
+  public void setAll(Pane inputRoot, Form inputObject) {
+    stepNumber = 0;
+    root = inputRoot;
+    object = inputObject;
+  }
 
   public static Form makeRect() {
     int block = (int) (Math.random() * 155);
@@ -93,7 +79,6 @@ public class MainController extends View implements Initializable {
   private static String generateFigure(int block, Rectangle a, Rectangle b, Rectangle c,
       Rectangle d,
       Rectangle e) {
-    root = Main.root;
     String name;
     if (block < 20) {
       a.setX(500);
@@ -284,19 +269,14 @@ public class MainController extends View implements Initializable {
     e.setX(a.getX());
     e.setY(a.getY());
   }
+
   public void setViewLabelFxText(String text) {
     label.setText(text);
-  }
-
-  public void setViewStepsFxText(String text) {
-    steps.setText(text);
   }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     localLabel = label;
-    setLabel(label);
     localSteps = steps;
-    setSteps(steps);
   }
 }

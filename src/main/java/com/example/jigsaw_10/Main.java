@@ -4,12 +4,8 @@ import java.util.Arrays;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -21,34 +17,40 @@ public class Main extends Application {
     Application.launch(args);
   }
 
-  MainController controller;
-  Stage windows;
-  public static long seconds = 0;
+  public static Stage windows;
+  public long localSeconds;
 
-  public static final int SIZE = 50;
-  public static int XMAX = SIZE * 9;
+  private static final int SIZE = 50;
+  private static int XMAX = SIZE * 9;
   public static int YMAX = SIZE * 9;
   public static int[][] MESH = new int[XMAX / SIZE][YMAX / SIZE];
-  public static Pane root;
-  public static Form object;
-  public static Form nextObj = MainController.makeRect();
+  private Pane root;
+  private Form object;
+  private static Form nextObj = MainController.makeRect();
+  private static FXMLLoader loader;
+  private static MainController controller;
+  public static Main m;
+  Timeline time;
+  KeyFrame frame;
+
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
-    root = loader.load();
-    controller = loader.getController();
-    windows = primaryStage;
+    doTime();
+    m = this;
     for (int[] a : MESH) {
       Arrays.fill(a, 0);
     }
+    loader = new FXMLLoader(getClass().getResource("Main.fxml"));
+    root = loader.load();
+    controller = loader.getController();
+    controller.setAll(root, object);
+    windows = primaryStage;
 
     Form a = nextObj;
     root.getChildren().addAll(a.a, a.b, a.c, a.d, a.e);
     object = a;
     nextObj = MainController.makeRect();
-    doTime();
-
 
     Scene scene = new Scene(root, 600, 450, Color.BLACK);
     windows.setResizable(false);
@@ -57,13 +59,19 @@ public class Main extends Application {
     windows.show();
   }
 
+  public void stopGame() {
+    time.stop();
+  }
+
   private void doTime() {
-    Timeline time = new Timeline();
-    KeyFrame frame = new KeyFrame(Duration.seconds(1), event -> {
+    localSeconds = 0;
+    time = new Timeline();
+    frame = new KeyFrame(Duration.seconds(1), event -> {
       controller.setViewLabelFxText(
-          "Time - " + seconds / 3600 + ":" + (seconds%3600) / 60 + ":" + seconds%60);
-      ++seconds;
-      if (seconds <= 0) {
+          "Time - " + localSeconds / 3600 + ":" + (localSeconds % 3600) / 60 + ":"
+              + localSeconds % 60);
+      ++localSeconds;
+      if (localSeconds <= 0) {
         time.stop();
       }
     });
