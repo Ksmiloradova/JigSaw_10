@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -22,8 +23,7 @@ public class Main extends Application {
 
   MainController controller;
   Stage windows;
-  private final long starttime = 0;
-  private long seconds = starttime;
+  public static long seconds = 0;
 
   public static final int SIZE = 50;
   public static int XMAX = SIZE * 9;
@@ -31,7 +31,7 @@ public class Main extends Application {
   public static int[][] MESH = new int[XMAX / SIZE][YMAX / SIZE];
   public static Pane root;
   public static Form object;
-  public static Form nextObj = Controller.makeRect();
+  public static Form nextObj = MainController.makeRect();
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -46,8 +46,9 @@ public class Main extends Application {
     Form a = nextObj;
     root.getChildren().addAll(a.a, a.b, a.c, a.d, a.e);
     object = a;
-    nextObj = Controller.makeRect();
+    nextObj = MainController.makeRect();
     doTime();
+
 
     Scene scene = new Scene(root, 600, 450, Color.BLACK);
     windows.setResizable(false);
@@ -56,34 +57,11 @@ public class Main extends Application {
     windows.show();
   }
 
-  private void moveOnKeyPress(Form form) {
-//    scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//      @Override
-//      public void handle(KeyEvent event) {
-//        switch (event.getCode()) {
-//          case RIGHT:
-//            Controller.MoveRight(form);
-//            break;
-//          case DOWN:
-//            MoveDown(form);
-//            score++;
-//            break;
-//          case LEFT:
-//            Controller.MoveLeft(form);
-//            break;
-//          case UP:
-//            MoveTurn(form);
-//            break;
-//        }
-//      }
-//    });
-  }
-
   private void doTime() {
     Timeline time = new Timeline();
     KeyFrame frame = new KeyFrame(Duration.seconds(1), event -> {
       controller.setViewLabelFxText(
-          "Time - " + seconds / 3600 + ":" + seconds / 60 + ":" + seconds);
+          "Time - " + seconds / 3600 + ":" + (seconds%3600) / 60 + ":" + seconds%60);
       ++seconds;
       if (seconds <= 0) {
         time.stop();

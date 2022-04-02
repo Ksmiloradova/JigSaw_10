@@ -5,43 +5,33 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane fx:id="root" maxHeight="450.0" maxWidth="600.0" minHeight="450.0" minWidth="600.0"
-  prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jigsaw_10.MainController">
-  <!--  <GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">-->
-  <!--    <padding>-->
-  <!--      <Insets top="5" right="5" bottom="5" left="5"/>-->
-  <!--    </padding>-->
-  <!--    <Button GridPane.rowIndex="0" GridPane.columnIndex="0" text="Click1!" onAction="#click"-->
-  <!--      fx:id="btn1"/>-->
-  <!--    <Button GridPane.rowIndex="0" GridPane.columnIndex="1" text="Click2!" onAction="#click"-->
-  <!--      fx:id="btn2"/>-->
-  <!--    <Label fx:id="label" GridPane.rowIndex="1" GridPane.columnIndex="0" text="Time - 00:00:00"/>-->
-  <!--    <Button GridPane.rowIndex="1" GridPane.columnIndex="1" text="Click!" onAction="#click"-->
-  <!--      fx:id="btn"/>-->
-  <!--    <Line startX="0" startY="${SIZE}" endX="${XMAX}" endY="${SIZE}"-->
-  <!--      layoutX="67.0" layoutY="154.0" opacity="0.5"-->
-  <!--      stroke="#346e3c" strokeLineCap="BUTT" strokeWidth="4.0"/>-->
-  <!--  </GridPane>-->
-  <Line endX="150" endY="450" startX="150" strokeWidth="2.0"/>
-  <Line endX="300" endY="450" startX="300" strokeWidth="2.0"/>
-  <Line endX="450" endY="150" startY="150" strokeWidth="2.0"/>
-  <Line endX="450" endY="300" startY="300" strokeWidth="2.0"/>
-  <Label fx:id="label" layoutX="478.0" layoutY="184.0" prefHeight="33.0" prefWidth="108.0"
-    text="Time - 00:00:00">
+<Pane fx:id="root" maxHeight="450.0" maxWidth="600.0" minHeight="450.0" minWidth="600.0" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jigsaw_10.MainController">
+<!--   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d1e7fc" height="151.0" layoutX="300.0" layoutY="-1.0" stroke="#e4e7f0" strokeType="INSIDE" width="150.0" />-->
+<!--   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d1e7fc" height="151.0" layoutY="-1.0" stroke="#e4e7f0" strokeType="INSIDE" width="150.0" />-->
+<!--   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d1e7fc" height="151.0" layoutX="149.0" layoutY="150.0" stroke="#e4e7f0" strokeType="INSIDE" width="150.0" />-->
+<!--   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d1e7fc" height="151.0" layoutY="299.0" stroke="#e4e7f0" strokeType="INSIDE" width="150.0" />-->
+  <Line endX="150" endY="450" startX="150" strokeWidth="2.0" />
+  <Line endX="300" endY="450" startX="300" strokeWidth="2.0" />
+  <Line endX="450" endY="150" startY="150" strokeWidth="2.0" />
+  <Line endX="450" endY="300" startY="300" strokeWidth="2.0" />
+  <Label fx:id="label" layoutX="478.0" layoutY="184.0" prefHeight="33.0" prefWidth="108.0" text="Time - 00:00:00">
     <font>
-      <Font size="14.0"/>
+      <Font size="14.0" />
     </font>
   </Label>
   <Label fx:id="steps" layoutX="478.0" layoutY="225.0" prefHeight="33.0" prefWidth="108.0" text="Steps - 0">
     <font>
-      <Font size="14.0"/>
+      <Font size="14.0" />
     </font>
   </Label>
-  <Button layoutX="477.0" layoutY="380.0" mnemonicParsing="false" prefHeight="56.0"
-    prefWidth="108.0" text="End game">
-    <font>
-      <Font size="20.0"/>
-    </font>
+  <Button fx:id="btn" layoutX="477.0" layoutY="380.0" mnemonicParsing="false" onAction="#openDialog" prefHeight="56.0" prefWidth="108.0" text="End game">
+      <font>
+         <Font size="18.0" />
+      </font>
   </Button>
+   <Line endX="300" endY="450" layoutX="151.0" startX="300" strokeWidth="2.0" />
+<!--   <Line endX="300" endY="450" layoutX="-300.0" startX="300" strokeWidth="2.0" />-->
+<!--   <Line endX="450" endY="150" layoutX="-1.0" layoutY="-150.0" startY="150" strokeWidth="2.0" />-->
+<!--   <Line endX="450" endY="300" layoutX="-1.0" layoutY="151.0" startY="300" strokeWidth="2.0" />-->
+<!--   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d1e7fc" height="151.0" layoutX="300.0" layoutY="299.0" stroke="#e4e7f0" strokeType="INSIDE" width="150.0" />-->
 </Pane>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" prefHeight="413.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.jigsaw_10.DialogController">
+      <Label fx:id="timeLb" layoutX="174.0" layoutY="213.0" prefHeight="31.0" prefWidth="306.0" text="Total time - ">
+        <font>
+          <Font size="21.0" />
+        </font>
+      </Label>
+      <Label fx:id="stepsLb" layoutX="216.0" layoutY="150.0" prefHeight="31.0" prefWidth="187.0" text="Steps - ">
+        <font>
+          <Font size="21.0" />
+        </font>
+      </Label>
+      <Button id="restartBtn" layoutX="14.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="New game" />
+      <Button id="exitBtn" layoutX="472.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Exit" />
+</AnchorPane>
