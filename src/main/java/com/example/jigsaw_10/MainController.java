@@ -15,18 +15,18 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class MainController extends View implements Initializable {
+public class MainController implements Initializable {
 
   @FXML
   private static Pane root;
-  @FXML
-  private Label label;
   @FXML
   public static Label localLabel;
   @FXML
   private Label steps;
   @FXML
   public static Label localSteps;
+  @FXML
+  private Label label;
 
   @FXML
   private void openDialog() throws IOException {
@@ -81,16 +81,7 @@ public class MainController extends View implements Initializable {
       Rectangle e) {
     String name;
     if (block < 20) {
-      a.setX(500);
-      a.setY(0);
-      b.setX(500);
-      b.setY(50);
-      c.setX(450);
-      c.setY(100);
-      d.setX(500);
-      d.setY(100);
-      setSame(a, e);
-      name = "j";
+      name = setKvadriFigure(a, b, c, d, e, 500, 0, 500, 50, 450, 500, "j");
     } else if (block < 40) {
       a.setX(500);
       a.setY(0);
@@ -117,83 +108,84 @@ public class MainController extends View implements Initializable {
       setSame(a, e);
       name = "o";
     } else if (block < 55) {
-      a.setX(500);
-      a.setY(50);
-      b.setX(550);
-      b.setY(50);
-      c.setX(450);
-      c.setY(100);
-      d.setX(500);
-      d.setY(100);
-      setSame(a, e);
-      name = "s";
+      name = setKvadriFigure(a, b, c, d, e, 500, 50, 550, 50, 450, 500, "s");
     } else if (block < 75) {
-      a.setX(500);
-      a.setY(50);
-      b.setX(450);
-      b.setY(100);
-      c.setX(500);
-      c.setY(100);
-      d.setX(550);
-      d.setY(100);
-      setSame(a, e);
-      name = "t";
+      name = setKvadriFigure(a, b, c, d, e, 500, 50, 450, 100, 500, 550, "t");
     } else if (block < 85) {
-      a.setX(450);
-      a.setY(50);
-      b.setX(500);
-      b.setY(50);
-      c.setX(500);
-      c.setY(100);
-      d.setX(550);
-      d.setY(100);
-      setSame(a, e);
-      name = "z";
+      name = setKvadriFigure(a, b, c, d, e, 450, 50, 500, 50, 500, 550, "z");
     } else if (block < 95) {
-      a.setX(500);
-      a.setY(0);
-      b.setX(500);
-      b.setY(50);
-      c.setX(500);
-      c.setY(100);
-      setSame(a, e);
-      setSame(a, d);
-      name = "i";
+      name = setTripleFigure(a, b, c, d, e, 500, 50, 100, "i");
     } else if (block < 115) {
-      a.setX(450);
-      a.setY(0);
-      b.setX(500);
-      b.setY(0);
-      c.setX(450);
-      c.setY(50);
-      setSame(a, e);
-      setSame(a, d);
-      name = "r";
+      name = setTripleFigure(a, b, c, d, e, 450, 0, 50, "r");
     } else if (block < 135) {
-      a.setX(550);
-      a.setY(0);
-      b.setX(550);
-      b.setY(50);
-      c.setX(450);
-      c.setY(100);
-      d.setX(500);
-      d.setY(100);
-      e.setX(550);
-      e.setY(100);
-      name = "L";
+      name = setSeptaFigure(a, b, c, d, e, 550, "L");
     } else {
-      a.setX(500);
-      a.setY(0);
-      b.setX(500);
-      b.setY(50);
-      c.setX(450);
-      c.setY(100);
-      d.setX(500);
-      d.setY(100);
-      e.setX(550);
-      e.setY(100);
-      name = "T";
+      name = setSeptaFigure(a, b, c, d, e, 500, "T");
     }
+    return name;
+  }
+
+
+  /**
+   * Method sets coordinates for five blocks figure
+   *
+   * @param a first rectangle
+   * @param b second rectangle
+   * @param c third rectangle
+   * @param d fourth rectangle
+   * @param e fifth rectangle
+   * @param i x coordinate
+   * @param l figure name
+   * @return name of settled figure
+   */
+  private static String setSeptaFigure(Rectangle a, Rectangle b, Rectangle c, Rectangle d,
+      Rectangle e,
+      int i, String l) {
+    String name;
+    a.setX(i);
+    a.setY(0);
+    b.setX(i);
+    b.setY(50);
+    c.setX(450);
+    c.setY(100);
+    d.setX(500);
+    d.setY(100);
+    e.setX(550);
+    e.setY(100);
+    name = l;
+    return name;
+  }
+
+  private static String setTripleFigure(Rectangle a, Rectangle b, Rectangle c, Rectangle d,
+      Rectangle e,
+      int i, int i2, int i3, String i4) {
+    String name;
+    a.setX(i);
+    a.setY(0);
+    b.setX(500);
+    b.setY(i2);
+    c.setX(i);
+    c.setY(i3);
+    setSame(a, e);
+    setSame(a, d);
+    name = i4;
+    return name;
+  }
+
+  private static String setKvadriFigure(Rectangle a, Rectangle b, Rectangle c, Rectangle d,
+      Rectangle e,
+      int i, int i2, int i3, int i4, int i5, int i6, String j) {
+    String name;
+    a.setX(i);
+    a.setY(i2);
+    b.setX(i3);
+    b.setY(i4);
+    c.setX(i5);
+    c.setY(100);
+    d.setX(i6);
+    d.setY(100);
+    setSame(a, e);
+    name = j;
     return name;
   }
 
@@ -229,19 +221,26 @@ public class MainController extends View implements Initializable {
         }
       }
       if (isCorrect) {
-        for (int i = 0; i < figure.length; ++i) {
-          MESH[getMeshFirst(event.getSceneY() + startY[i] - startY[5])][getMeshSecond(
-              event.getSceneX() + startX[i] - startX[5])] = 1;
-          figure[i].setTranslateX(50 * getMeshSecond(event.getSceneX()) - startX[5]);
-          figure[i].setTranslateY(50 * getMeshFirst(event.getSceneY()) - startY[5]);
-          figure[i].setOnMousePressed(null);
-          figure[i].setOnMouseDragged(null);
-          figure[i].setOnMouseReleased(null);
+        try {
+          for (int i = 0; i < figure.length; ++i) {
+            MESH[getMeshFirst(event.getSceneY() + startY[i] - startY[5])][getMeshSecond(
+                event.getSceneX() + startX[i] - startX[5])] = 1;
+            figure[i].setTranslateX(50 * getMeshSecond(event.getSceneX()) - startX[5]);
+            figure[i].setTranslateY(50 * getMeshFirst(event.getSceneY()) - startY[5]);
+            figure[i].setOnMousePressed(null);
+            figure[i].setOnMouseDragged(null);
+            figure[i].setOnMouseReleased(null);
+          }
+          MainController.localSteps.setText("Steps - " + (++stepNumber));
+          Form form = makeRect();
+          root.getChildren().addAll(form.a, form.b, form.c, form.d, form.e);
+          object = form;
+        } catch (Exception e) {
+          for (int i = 0; i < figure.length; ++i) {
+            figure[i].setTranslateX(0);
+            figure[i].setTranslateY(0);
+          }
         }
-        MainController.localSteps.setText("Steps - " + (++stepNumber));
-        Form form = makeRect();
-        root.getChildren().addAll(form.a, form.b, form.c, form.d, form.e);
-        object = form;
       } else {
         for (int i = 0; i < figure.length; ++i) {
           figure[i].setTranslateX(0);

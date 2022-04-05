@@ -64,7 +64,7 @@ public class Main extends Application {
   }
 
   private void doTime() {
-    localSeconds = 0;
+    localSeconds = 1;
     time = new Timeline();
     frame = new KeyFrame(Duration.seconds(1), event -> {
       controller.setViewLabelFxText(
